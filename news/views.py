@@ -5,10 +5,11 @@ import datetime as dt
 
 # Create your views here.
 def welcome(request):
-    return HttpResponse('Welcome to the Moringa Tribune, Jaey cherry')
+
+    return render(request, 'welcome.html')
+    # return HttpResponse('welcome.html')
 
 def convert_dates(dates):
-
     # Function that gets the weekday number for the date.
     day_number = dt.date.weekday(dates)
 
