@@ -7,10 +7,14 @@
   <!-- Looping through news   -->
   {% for news_item in news %}
 
-  <div class="row">
+  <div class="row ">
     <!-- displaying News articles -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
       <h2 class="text-center"> {{ news_item.title }} </h2>
+      <p class="text-center">{{news_item.post}} </p>
+      <p class="text-center">{{news_item.editor}} </p>
+      <p class="text-center">{{news_item.tags}} </p>
+      <p class="text-center">{{news_item.pub_date}} </p>
     </div>
 
   </div>
