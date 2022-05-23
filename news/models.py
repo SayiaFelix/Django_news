@@ -3,8 +3,8 @@ import datetime as dt
 
 # Create your models here.
 class Editor(models.Model):
-    first_name = models.CharField(max_length =30)
-    last_name = models.CharField(max_length =30)
+    first_name = models.CharField(max_length = 30)
+    last_name = models.CharField(max_length = 30)
     email = models.EmailField()
     phone_number = models.CharField(max_length = 10,blank =True)
 
@@ -14,6 +14,9 @@ class Editor(models.Model):
     
     def save_editor(self):
         self.save()
+        
+    # def delete_editor(self):
+    #     self.delete()
 
     class Meta:
         ordering = ['first_name']
@@ -27,7 +30,7 @@ class tags(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length =60)
     post = models.TextField()
-    editor = models.ForeignKey(Editor,on_delete=models.CASCADE,)
+    editor = models.ForeignKey(Editor,on_delete=models.CASCADE)
     tags = models.ManyToManyField(tags)
     pub_date = models.DateTimeField(auto_now_add=True)
 
