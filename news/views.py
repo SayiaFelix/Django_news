@@ -1,9 +1,12 @@
+
 from django.shortcuts import render,redirect
 import datetime as dt
 from .models import Article, NewsLetterRecipients
 from .forms import NewsLetterForm
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .email import send_welcome_email
+from django.core.mail import send_mail
+
 
 # Create your views here.
 def news_letter(request):
@@ -12,12 +15,19 @@ def news_letter(request):
         form = NewsLetterForm(request.POST)
         if form.is_valid():
             form.save()
-            # name = form.cleaned_data
-            # email = form.cleaned_data
+            name = request.POST['name']
+            email = request.POST['email']
 
-            # recipient = NewsLetterRecipients(name = name,email =email)
-            # recipient.save()
-            # send_welcome_email(name,email)
+            #send and email
+            send_mail(
+                name,
+                email,
+                ['sayiafelix18@gmail.com'],
+                )
+
+            recipient = NewsLetterRecipients(name = name,email =email)
+            recipient.save()
+            send_welcome_email(name,email, ['sayiafelix18@gmail.com'],)
 
             return HttpResponseRedirect('/newsletter?submitted=True')
     else:

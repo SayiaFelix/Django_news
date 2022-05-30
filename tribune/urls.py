@@ -1,12 +1,11 @@
 
 from django.contrib import admin
-from django.urls import re_path as url,include
-
+from django.conf.urls import url,include
 
 urlpatterns = [ 
     url(r'^admin/', admin.site.urls),
     url(r'', include('news.urls')),
-  
+    url(r'^accounts/', include('registration.backends.simple.urls')),
 ]
 
 

@@ -1,15 +1,15 @@
 
-from django.urls import re_path
+from django.conf.urls import url
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns=[
-    re_path('^$',views.news_today,name='newsToday'),
-    re_path(r'^search/', views.search_results, name='search_results'),
-    re_path(r'^archives/(\d{4}-\d{2}-\d{2})/$',views.past_days_news,name = 'pastNews'),
-    re_path(r'^article/(\d+)',views.article,name ='article'),
-    re_path(r'^newsletter',views.news_letter,name ='newsletter'),
+    url('^$',views.news_today,name='newsToday'),
+    url(r'^search/', views.search_results, name='search_results'),
+    url(r'^archives/(\d{4}-\d{2}-\d{2})/$',views.past_days_news,name = 'pastNews'),
+    url(r'^article/(\d+)',views.article,name ='article'),
+    url(r'^newsletter',views.news_letter,name ='newsletter'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
