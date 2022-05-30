@@ -1,7 +1,7 @@
 {%extends 'all-news/base.html'%} 
 {% block content %}
 <div class="container">
-
+  <h1 class='text-center'>News for {{date|date:"l d-F Y"}}</h1>
   <div class="row">
     {% if articles%}
       <h2>Found {{ articles|length }} of searched term {{message}}</h2>

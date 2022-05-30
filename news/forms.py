@@ -1,5 +1,22 @@
 from django import forms
+from django.forms import ModelForm
+from .models import NewsLetterRecipients
 
-class NewsLetterForm(forms.Form):
-    your_name = forms.CharField(label='First Name',max_length=30)
-    email = forms.EmailField(label='Email')
+class NewsLetterForm(ModelForm):
+    class Meta:
+        model = NewsLetterRecipients
+        fields = ('name', 'email')
+
+        # labels={
+
+        #   'name': '',
+        #    'email': '',
+          
+        # }
+
+        widgets = {
+           'name' : forms.TextInput(attrs={'class': 'form-control','placeholder':'Name'}),
+           'email' :forms.EmailInput(attrs={'class': 'form-control','placeholder':'Email Address'}),
+
+        }
+   

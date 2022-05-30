@@ -6,24 +6,33 @@ from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .email import send_welcome_email
 
 # Create your views here.
+def news_letter(request):
+    submitted =False
+    if request.method == 'POST':
+        form = NewsLetterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # name = form.cleaned_data
+            # email = form.cleaned_data
+
+            # recipient = NewsLetterRecipients(name = name,email =email)
+            # recipient.save()
+            # send_welcome_email(name,email)
+
+            return HttpResponseRedirect('/newsletter?submitted=True')
+    else:
+        form = NewsLetterForm()
+        if 'submitted' in request.GET:
+            submitted=True
+    return render(request, 'all-news/newsletter.html', {"letterForm":form,"submitted":submitted})
+
+
+
 def news_today(request):
     date = dt.date.today()
     news = Article.todays_news()
 
-    if request.method == 'POST':
-        form = NewsLetterForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['your_name']
-            email = form.cleaned_data['email']
-
-            recipient = NewsLetterRecipients(name = name,email =email)
-            recipient.save()
-            send_welcome_email(name,email)
-
-            HttpResponseRedirect('news_today')
-    else:
-        form = NewsLetterForm()
-    return render(request, 'all-news/today-news.html', {"date": date,"news":news,"letterForm":form})
+    return render(request, 'all-news/today-news.html', {"date": date,"news":news})
 
 # View Function to present news from past days
 def past_days_news(request, past_date):

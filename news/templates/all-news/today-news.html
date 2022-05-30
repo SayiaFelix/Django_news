@@ -1,9 +1,10 @@
 {%extends 'all-news/base.html'%}
 {% block content %} 
 {{ block.super}}
+{% load crispy_forms_tags %}
 
 <div class="container">
-
+  <h1 class='text-center'>News for {{date|date:"l d-F Y"}}</h1>
   <!-- Looping through news   -->
   {% for news_item in news %}
   <hr>
@@ -25,27 +26,5 @@
   {% endfor %}
 </div>
 
-<div class="container-fluid">
 
-  <form action="{%url 'newsToday'%}" method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-        <legend class='border-bottom mb-4 text-center fw-bold'>Login</legend>
-        {{ form.as_p }}
-    </fieldset>
-            <div class="form-group">
-                <button type="submit" class="btn btn-outline-info">Subscribe</button>
-            </div>         
-</form>
-</div>
-{% comment %} <div class="container-fluid">
-
-  <form  action="{%url 'newsToday'%}" method="post">
-    {%csrf_token%}
-
-    {% bootstrap_form letterForm layout='form-inline' %}
-    <input type="submit" value="Subscribe">
-  </form>
-
-</div> {% endcomment %}
 {% endblock %}
