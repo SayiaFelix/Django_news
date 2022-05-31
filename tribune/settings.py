@@ -24,7 +24,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [ 
+    'tinymce',
     'registration',
     'crispy_forms',
     'news.apps.NewsConfig',

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import NewsLetterRecipients
+from .models import NewsLetterRecipients,Article
 
 class NewsLetterForm(ModelForm):
     class Meta:
@@ -19,4 +19,13 @@ class NewsLetterForm(ModelForm):
            'email' :forms.EmailInput(attrs={'class': 'form-control','placeholder':'Email Address'}),
 
         }
+
+class NewArticleForm(forms.ModelForm):
+
+    class Meta:
+           model = Article
+           exclude = ['editor', 'pub_date']
+           widgets = {
+            'tags': forms.CheckboxSelectMultiple(),
+           }
    
