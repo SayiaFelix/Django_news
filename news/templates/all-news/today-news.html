@@ -11,7 +11,7 @@
     <div class="row">
        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <h2 class="text-center"> {{ news_item.title }} </h2>
-        <h5 class="text-center"> {{ news_item.pub_date }} </h5>
+        <h5 class="text-center"> {{ news_item.pub_date|date:"l d-F Y" }} </h5>
       </div>
      
       <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
