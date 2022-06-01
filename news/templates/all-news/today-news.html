@@ -2,9 +2,10 @@
 {% block content %} 
 {{ block.super}}
 {% load crispy_forms_tags %}
-
+<br>
 <div class="container">
   <h1 class='text-center'>News for {{date|date:"l d-F Y"}}</h1>
+  <hr>
   <!-- Looping through news   -->
   {% for news_item in news %}
   <hr>
