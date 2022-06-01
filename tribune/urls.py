@@ -10,4 +10,6 @@ urlpatterns = [
     url(r'^logout/$', views.logout, {"next_page": '/'}), 
 ]
 
-
+admin.site.site_header= "Sir LoRa News Administration"
+admin.site.site_title="SiR LoRa"
+admin.site.index_title="Welcome to Sir LoRa Newsadministration"
