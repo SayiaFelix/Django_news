@@ -2,9 +2,12 @@
 {% block content %} 
 {{ block.super}}
 {% load crispy_forms_tags %}
-<br>
+<hr>
+
 <div class="container">
-  <h1 class='text-center'>News for {{date|date:"l d-F Y"}}</h1>
+  <h1 class='text-center'>{{date|date:"l d-F Y"}}</h3>
+  <h3 class=''>Today's Headline:</h1>
+
   <hr>
   <!-- Looping through news   -->
   {% for news_item in news %}
@@ -22,10 +25,10 @@
     </div> <br>
   {% empty %}
   <div class="row">
-    <h2 class="text-center">There No News Items</h2>
+    <h2 class="text-center">Sorry!!! There is No News Today.</h2>
   </div>
   {% endfor %}
 </div>
 
-
+<hr>
 {% endblock %}
