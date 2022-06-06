@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.core import serializers
 from .forms import FriendForm
-from .models import Friend
+from .models import *
 
 def indexView(request):
     form = FriendForm()
@@ -67,3 +67,22 @@ def checkNickName(request):
 #                 return JsonResponse({"error": form.errors}, status=400)
 
 #         return JsonResponse({"error": ""}, status=400)
+
+def create_post(request):
+    posts = Post.objects.all()
+    response_data = {}
+
+    if request.POST.get('action') == 'post':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+
+        response_data['title'] = title
+        response_data['description'] = description
+
+        Post.objects.create(
+            title = title,
+            description = description,
+            )
+        return JsonResponse(response_data)
+
+    return render(request, 'post.html', {'posts':posts}) 

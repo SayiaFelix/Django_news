@@ -5,7 +5,7 @@ from django.conf.urls import include,url
 urlpatterns = [ 
     url(r'^admin/', admin.site.urls),
     url(r'', include('news.urls')),
-    url(r'app/', include('my_app.urls')),
+    url(r'', include('my_app.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^logout/$', views.logout, {"next_page": '/'}), 
