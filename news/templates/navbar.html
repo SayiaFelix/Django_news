@@ -12,9 +12,7 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/accounts/register/">Register</a>
                   </li>    
-                 {% comment %} <li class="nav-item">
-                  <a class="nav-link" href="/article/1">Articles</a>
-                </li>     {% endcomment %}
+              
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'newsletter' %}">Subscribe</a>
               </li>  
@@ -22,12 +20,14 @@
           <div class="col-sm-5 col-md-5">
             {% if user.is_authenticated %}
               <li class="nav-item dropdown">
-                <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account </a>
+                <a href="#" class="nav-link dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown" role="menu">
                   <li>
                     <a class="dropdown-item" href="{%url 'newsToday'%}">Home</a>
                   </li>
-                 
+                  <li class="">
+                    <a class="dropdown-item" href="/app">Friends</a>
+                  </li>   
                   <li>
                     <a class="dropdown-item" href="{%url 'new-article'%}">Create Article</a>
                   </li>
