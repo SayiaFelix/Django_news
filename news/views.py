@@ -5,42 +5,25 @@ from .models import Article, NewsLetterRecipients
 from .forms import NewsLetterForm,NewArticleForm
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .email import send_welcome_email
-from django.core.mail import send_mail
-
+from django.http import JsonResponse
 
 # Create your views here.
-def news_letter(request):
-    submitted =False
-    if request.method == 'POST':
-        form = NewsLetterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            name = request.POST['name']
-            email = request.POST['email']
+def newsletter(request):
+    name = request.POST.get('your_name')
+    email = request.POST.get('email')
 
-            #send and email
-            send_mail(
-                name,
-                email,
-                ['sayiafelix18@gmail.com'],
-                )
-
-            recipient = NewsLetterRecipients(name = name,email =email)
-            recipient.save()
-            send_welcome_email(name,email, ['sayiafelix18@gmail.com'],)
-
-            return HttpResponseRedirect('/newsletter?submitted=True')
-    else:
-        form = NewsLetterForm()
-        if 'submitted' in request.GET:
-            submitted=True
-    return render(request, 'all-news/newsletter.html', {"letterForm":form,"submitted":submitted})
+    recipient = NewsLetterRecipients(name=name, email=email)
+    recipient.save()
+    send_welcome_email(name, email)
+    data = {'success': 'You have been successfully added to mailing list'}
+    return JsonResponse(data)
 
 def news_today(request):
     date = dt.date.today()
     news = Article.todays_news()
+    form = NewsLetterForm()
+    return render(request, 'all-news/today-news.html', {"date": date, "news": news, "letterForm": form})
 
-    return render(request, 'all-news/today-news.html', {"date": date,"news":news})
 
 # View Function to present news from past days
 def past_days_news(request, past_date):

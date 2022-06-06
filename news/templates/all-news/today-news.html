@@ -1,6 +1,7 @@
 {%extends 'all-news/base.html'%}
 {% block content %} 
 {{ block.super}}
+{% load staticfiles %}
 {% load crispy_forms_tags %}
 <hr>
 
@@ -31,4 +32,7 @@
 </div>
 
 <hr>
+{% endblock %}
+{% block scripts %} {{block.super}}
+  <script type="text/javascript" src="{% static 'js/newsletter.js' %}"></script>
 {% endblock %}
